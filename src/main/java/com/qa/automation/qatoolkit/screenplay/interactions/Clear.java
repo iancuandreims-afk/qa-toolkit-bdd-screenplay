@@ -35,7 +35,7 @@ public class Clear extends TimedAction<Clear> {
             element.clear();
         } catch (WebDriverException e) {
             if (jsFallback) {
-                LOGGER.log(Level.WARNING, "Clear via JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element, e);
+                LOGGER.log(Level.FINE, "Clear via JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element, e);
                 ((JavascriptExecutor) driver(actor)).executeScript("arguments[0].value = ''; arguments[0].dispatchEvent(new Event('input',{bubbles:true}));", element);
             } else {
                 throw e;

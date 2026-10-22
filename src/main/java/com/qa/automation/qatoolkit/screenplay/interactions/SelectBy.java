@@ -57,7 +57,7 @@ public class SelectBy extends TimedAction<SelectBy> {
             }
         } catch (Exception e) {
             if (jsFallback) {
-                LOGGER.log(Level.WARNING, "SelectBy: using JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element, e);
+                LOGGER.log(Level.FINE, "SelectBy: using JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element, e);
                 String js;
                 switch (selectionType) {
                     case TEXT -> js = "for(var i=0;i<arguments[0].options.length;i++){ if(arguments[0].options[i].text==\"" + selectorValue + "\"){arguments[0].selectedIndex=i; arguments[0].dispatchEvent(new Event('change',{bubbles:true})); break;} }";

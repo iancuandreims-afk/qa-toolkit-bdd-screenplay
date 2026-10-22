@@ -35,7 +35,7 @@ public class ScrollTo extends TimedAction<ScrollTo> {
         } catch (WebDriverException e) {
             if (jsFallback) {
                 LOGGER.log(
-                        Level.WARNING,
+                        Level.FINE,
                         "ScrollTo: using JS fallback for actor "
                                 + (actor != null ? actor.getName() : "<unknown>")
                                 + " on element " + element,

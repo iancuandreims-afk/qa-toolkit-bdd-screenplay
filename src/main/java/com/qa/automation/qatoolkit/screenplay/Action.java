@@ -54,7 +54,7 @@ public abstract class Action implements Performable {
             element.click();
         } catch (WebDriverException e) {
             if (allowJsFallback) {
-                LOGGER.log(Level.WARNING, "Click via JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element, e);
+                LOGGER.log(Level.FINE, "Click via JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element, e);
                 ((JavascriptExecutor) driver(actor)).executeScript("arguments[0].click();", element);
             } else {
                 throw e;
@@ -77,7 +77,7 @@ public abstract class Action implements Performable {
                 StringBuilder sb = new StringBuilder();
                 for (CharSequence k : keys) sb.append(k);
                 String value = sb.toString().replace("'", "\\'");
-                LOGGER.log(Level.WARNING, "SendKeys via JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element + " value=" + value, e);
+                LOGGER.log(Level.FINE, "SendKeys via JS fallback for actor " + (actor != null ? actor.getName() : "<unknown>") + " on element " + element + " value=" + value, e);
                 ((JavascriptExecutor) driver(actor))
                         .executeScript("arguments[0].value = (arguments[0].value || '') + '" + value + "'; arguments[0].dispatchEvent(new Event('input',{bubbles:true}));", element);
             } else {
