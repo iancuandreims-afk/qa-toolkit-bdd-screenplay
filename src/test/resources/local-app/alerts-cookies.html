@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alerts and Cookies Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 24px; }
+        .banner {
+            background: #f3f3f3;
+            border: 1px solid #ccc;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .hidden { display: none; }
+        .stack { display: flex; flex-direction: column; gap: 12px; }
+        button { padding: 8px 12px; }
+    </style>
+</head>
+<body>
+    <div id="cookie-banner" class="banner">
+        <span>We use cookies.</span>
+        <button id="accept-cookie" type="button">Accept all</button>
+        <button id="decline-cookie" type="button">Decline</button>
+    </div>
+
+    <div class="stack">
+        <button id="show-alert" type="button">Show alert</button>
+        <button id="show-confirm" type="button">Show confirm</button>
+        <button id="show-prompt" type="button">Show prompt</button>
+
+        <div>
+            <strong>Alert result:</strong>
+            <span id="alert-status">pending</span>
+        </div>
+        <div>
+            <strong>Confirm result:</strong>
+            <span id="confirm-status">pending</span>
+        </div>
+        <div>
+            <strong>Prompt result:</strong>
+            <span id="prompt-status">pending</span>
+        </div>
+    </div>
+
+    <script>
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+            return match ? decodeURIComponent(match[1]) : null;
+        }
+
+        function setCookie(name, value) {
+            document.cookie = name + '=' + value + '; path=/';
+        }
+
+        function hideCookieBanner() {
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        document.getElementById('accept-cookie').addEventListener('click', function () {
+            setCookie('cookie_consent', 'accepted');
+            hideCookieBanner();
+        });
+
+        document.getElementById('decline-cookie').addEventListener('click', function () {
+            setCookie('cookie_consent', 'declined');
+            hideCookieBanner();
+        });
+
+        document.getElementById('show-alert').addEventListener('click', function () {
+            alert('This is an alert message');
+            document.getElementById('alert-status').textContent = 'alert accepted';
+        });
+
+        document.getElementById('show-confirm').addEventListener('click', function () {
+            const result = confirm('Do you want to continue?');
+            document.getElementById('confirm-status').textContent = result ? 'confirmed' : 'dismissed';
+        });
+
+        document.getElementById('show-prompt').addEventListener('click', function () {
+            const value = prompt('Type a value', 'value');
+            document.getElementById('prompt-status').textContent = value == null ? 'cancelled' : 'entered:' + value;
+        });
+    </script>
+</body>
+</html>

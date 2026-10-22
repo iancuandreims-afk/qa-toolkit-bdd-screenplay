@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iframe Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 24px;
+        }
+
+        .outer {
+            padding: 24px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 420px;
+            height: 220px;
+            border: 2px solid #2563eb;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <h1>Parent page</h1>
+        <p id="outside-text">This text is outside the iframe.</p>
+    </div>
+
+    <iframe id="demo-frame" srcdoc="
+        <!DOCTYPE html>
+        <html>
+        <body>
+            <div style='padding:16px; font-family: Arial, sans-serif;'>
+                <h2>Inside frame</h2>
+                <input id='frame-input' type='text' placeholder='Type here' />
+                <button id='frame-button' type='button'>Submit inside frame</button>
+                <div id='frame-status'>waiting</div>
+                <script>
+                    const input = document.getElementById('frame-input');
+                    const status = document.getElementById('frame-status');
+                    document.getElementById('frame-button').addEventListener('click', function () {
+                        status.textContent = 'submitted:' + input.value;
+                    });
+                </script>
+            </div>
+        </body>
+        </html>
+    "></iframe>
+</body>
+</html>

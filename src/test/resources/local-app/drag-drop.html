@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag and Drop Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 32px;
+        }
+
+        #drag-source {
+            width: 180px;
+            padding: 20px;
+            background: #dbeafe;
+            border: 2px solid #2563eb;
+            border-radius: 10px;
+            text-align: center;
+            cursor: grab;
+            user-select: none;
+        }
+
+        #drag-source.dragging {
+            opacity: 0.5;
+            border-style: dashed;
+        }
+
+        #drop-zone {
+            margin-top: 24px;
+            width: 300px;
+            min-height: 140px;
+            padding: 16px;
+            border: 2px dashed #a3a3a3;
+            border-radius: 12px;
+            background: #f5f5f5;
+        }
+
+        #drop-zone.over {
+            border-color: #16a34a;
+            background: #ecfdf5;
+        }
+
+        #upload-dropzone {
+            margin-top: 28px;
+            width: 360px;
+            min-height: 120px;
+            border: 2px dashed #7c3aed;
+            border-radius: 12px;
+            background: #f3e8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #4c1d95;
+        }
+
+        #upload-dropzone.over {
+            background: #ede9fe;
+            border-color: #6d28d9;
+        }
+
+        #drag-status,
+        #drop-status,
+        #upload-status {
+            margin-top: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>Drag and Drop Demo</h1>
+
+    <div id="drag-source" draggable="true">Drag me</div>
+
+    <div id="drop-zone" aria-label="Drop target">
+        <div>Drop here</div>
+    </div>
+
+    <div id="upload-dropzone" aria-label="Upload dropzone">Drop file here</div>
+
+    <div id="drag-status">not-dragging</div>
+    <div id="drop-status">not-dropped</div>
+    <div id="upload-status">no-file</div>
+
+    <script>
+        const source = document.getElementById('drag-source');
+        const dropZone = document.getElementById('drop-zone');
+        const uploadDropzone = document.getElementById('upload-dropzone');
+        const dragStatus = document.getElementById('drag-status');
+        const dropStatus = document.getElementById('drop-status');
+        const uploadStatus = document.getElementById('upload-status');
+
+        source.addEventListener('dragstart', function () {
+            source.classList.add('dragging');
+            dragStatus.textContent = 'dragging';
+        });
+
+        source.addEventListener('dragend', function () {
+            source.classList.remove('dragging');
+            dragStatus.textContent = 'drag-finished';
+        });
+
+        dropZone.addEventListener('dragover', function (event) {
+            event.preventDefault();
+            dropZone.classList.add('over');
+        });
+
+        dropZone.addEventListener('dragleave', function () {
+            dropZone.classList.remove('over');
+        });
+
+        dropZone.addEventListener('drop', function (event) {
+            event.preventDefault();
+            dropZone.classList.remove('over');
+            dropStatus.textContent = 'dropped';
+        });
+
+        uploadDropzone.addEventListener('dragover', function (event) {
+            event.preventDefault();
+            uploadDropzone.classList.add('over');
+        });
+
+        uploadDropzone.addEventListener('dragleave', function () {
+            uploadDropzone.classList.remove('over');
+        });
+
+        uploadDropzone.addEventListener('drop', function (event) {
+            event.preventDefault();
+            uploadDropzone.classList.remove('over');
+            const file = event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files[0];
+            if (file) {
+                uploadStatus.textContent = 'uploaded: ' + file.name;
+            } else {
+                uploadStatus.textContent = 'no-file';
+            }
+        });
+    </script>
+</body>
+</html>

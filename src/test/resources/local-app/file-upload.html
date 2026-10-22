@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 32px;
+        }
+
+        .upload-panel {
+            max-width: 420px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            padding: 20px;
+            background: #f9fafb;
+        }
+
+        input[type="file"] {
+            margin-top: 12px;
+            display: block;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 10px 16px;
+        }
+
+        #upload-status {
+            margin-top: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+    </style>
+</head>
+<body>
+    <h1>File Upload Demo</h1>
+
+    <div class="upload-panel">
+        <label for="upload-input">Choose a file</label>
+        <input id="upload-input" type="file" />
+        <button id="upload-button" type="button">Upload</button>
+        <div id="upload-status">no file selected</div>
+    </div>
+
+    <script>
+        const input = document.getElementById('upload-input');
+        const status = document.getElementById('upload-status');
+        const button = document.getElementById('upload-button');
+
+        button.addEventListener('click', function () {
+            const file = input.files && input.files[0];
+            status.textContent = file ? 'uploaded: ' + file.name : 'no file selected';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table and Data Grid Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 32px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 520px;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .selected {
+            background: #dbeafe;
+        }
+
+        #selected-row {
+            margin-top: 18px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <h1>Orders table</h1>
+
+    <table id="orders-table">
+        <thead>
+        <tr>
+            <th>Select</th>
+            <th>Customer</th>
+            <th>Value</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-row="row-1">
+            <td><input type="checkbox" class="row-select" value="row-1" /></td>
+            <td>Alice</td>
+            <td>$120</td>
+            <td>Paid</td>
+        </tr>
+        <tr data-row="row-2" class="selected">
+            <td><input type="checkbox" class="row-select" value="row-2" checked /></td>
+            <td>Bob</td>
+            <td>$245</td>
+            <td>Pending</td>
+        </tr>
+        <tr data-row="row-3">
+            <td><input type="checkbox" class="row-select" value="row-3" /></td>
+            <td>Charlie</td>
+            <td>$310</td>
+            <td>Processing</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="selected-row">Selected row: row-2</div>
+
+    <script>
+        const selectedRowLabel = document.getElementById('selected-row');
+        const rows = document.querySelectorAll('.row-select');
+
+        rows.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                const row = checkbox.closest('tr');
+                const checkedRows = [...document.querySelectorAll('.row-select:checked')];
+
+                document.querySelectorAll('tbody tr').forEach(function (tr) {
+                    tr.classList.toggle('selected', tr === row && checkbox.checked);
+                    if (tr === row) {
+                        tr.classList.toggle('selected', checkbox.checked);
+                    }
+                });
+
+                if (checkedRows.length > 0) {
+                    selectedRowLabel.textContent = 'Selected row: ' + checkedRows[0].value;
+                } else {
+                    selectedRowLabel.textContent = 'Selected row: none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

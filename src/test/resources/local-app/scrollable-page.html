@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrollable Page Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #111827;
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content {
+            padding: 24px;
+            height: 1800px;
+        }
+
+        .spacer {
+            height: 1200px;
+        }
+
+        .scroll-target {
+            margin-top: 80px;
+            border: 2px solid #16a34a;
+            background: #ecfdf5;
+            padding: 20px;
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .scroll-btns {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div>Sticky Top Bar</div>
+        <div class="scroll-btns">
+            <button id="scroll-to-lower" type="button">Scroll lower</button>
+            <button id="scroll-to-top" type="button">Scroll top</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Scrollable Page</h1>
+        <p>Some intro text before the lower section.</p>
+        <div class="spacer"></div>
+
+        <section id="lower-section" class="scroll-target">
+            <h2>Lower section after scroll</h2>
+            <p>This section becomes visible only after scrolling.</p>
+        </section>
+    </div>
+
+    <script>
+        const lowerSection = document.getElementById('lower-section');
+        const scrollLowerButton = document.getElementById('scroll-to-lower');
+        const scrollTopButton = document.getElementById('scroll-to-top');
+
+        scrollLowerButton.addEventListener('click', function () {
+            window.scrollTo({ top: 1200, behavior: 'auto' });
+            setTimeout(function () {
+                lowerSection.classList.add('visible');
+            }, 200);
+        });
+
+        scrollTopButton.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+            lowerSection.classList.remove('visible');
+        });
+    </script>
+</body>
+</html>

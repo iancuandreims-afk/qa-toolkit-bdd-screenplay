@@ -1,0 +1,2 @@
+CRITICAL EXECUTION RULE:
+Always execute build, maven, and shell commands using the `run_in_terminal` tool so that stdout and stderr stream live inside the IntelliJ terminal window instead of running silently in the background chat runner.

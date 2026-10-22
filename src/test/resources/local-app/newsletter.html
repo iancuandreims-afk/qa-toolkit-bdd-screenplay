@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Newsletter Subscription</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 32px; }
+        form { max-width: 440px; display: flex; flex-direction: column; gap: 12px; }
+        label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+        input[type="text"], input[type="email"] { padding: 8px; }
+        .checkbox-row { display: flex; align-items: center; gap: 10px; }
+        button { padding: 10px 14px; width: fit-content; }
+        #success-message { margin-top: 16px; font-weight: 700; color: green; display: none; }
+    </style>
+</head>
+<body>
+    <h1>Subscribe to our newsletter</h1>
+
+    <form id="newsletter-form">
+        <label>
+            First name
+            <input id="first-name" type="text" name="firstName" placeholder="Jane" />
+        </label>
+
+        <label>
+            Last name
+            <input id="last-name" type="text" name="lastName" placeholder="Doe" />
+        </label>
+
+        <label>
+            Email
+            <input id="email" type="email" name="email" placeholder="jane@example.com" />
+        </label>
+
+        <label class="checkbox-row">
+            <input id="terms" type="checkbox" name="terms" />
+            <span>I agree to the terms and conditions.</span>
+        </label>
+
+        <button id="subscribe-button" type="submit">Subscribe</button>
+    </form>
+
+    <div id="success-message">Thanks for subscribing!</div>
+
+    <script>
+        document.getElementById('newsletter-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const form = event.currentTarget;
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const termsChecked = document.getElementById('terms').checked;
+
+            if (!firstName || !lastName || !email || !termsChecked) {
+                alert('Please complete all fields and accept the terms.');
+                return;
+            }
+
+            document.getElementById('success-message').textContent = 'Thanks, ' + firstName + '! You are subscribed.';
+            document.getElementById('success-message').style.display = 'block';
+            form.reset();
+        });
+    </script>
+</body>
+</html>

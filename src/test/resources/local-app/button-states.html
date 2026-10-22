@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Button States Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 24px; }
+        .stack { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+        .card {
+            position: relative;
+            width: 260px;
+            height: 74px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        #covered-button {
+            position: absolute;
+            left: 12px;
+            top: 18px;
+            z-index: 1;
+        }
+        #hover-message { display: none; }
+        #click-status, #double-click-status { display: block; }
+    </style>
+    <script>
+        function setClickStatus() {
+            document.getElementById('click-status').value = 'clicked';
+        }
+
+        function showHoverMessage() {
+            document.getElementById('hover-message').style.display = 'block';
+        }
+
+        function hideHoverMessage() {
+            document.getElementById('hover-message').style.display = 'none';
+        }
+
+        function setDoubleClickStatus() {
+            document.getElementById('double-click-status').value = 'double-clicked';
+        }
+    </script>
+</head>
+<body>
+    <h1>Button States Demo</h1>
+
+    <div class="stack">
+        <a id="enabled-link" href="/about.html">Enabled link</a>
+
+        <button id="enabled-button" type="button" onclick="setClickStatus()">Enabled button</button>
+        <button id="disabled-button" type="button" disabled>Disabled button</button>
+        <button id="hidden-button" type="button" style="display:none;">Hidden button</button>
+
+        <div class="card">
+            <button id="covered-button" type="button" disabled>Covered button</button>
+        </div>
+
+        <button id="hover-target" type="button" onmouseenter="showHoverMessage()" onmouseleave="hideHoverMessage()">Hover target</button>
+        <div id="hover-message">Hovered</div>
+
+        <button id="double-click-target" type="button" ondblclick="setDoubleClickStatus()">Double click target</button>
+        <input id="click-status" type="text" value="pending" />
+        <input id="double-click-status" type="text" value="pending" />
+    </div>
+</body>
+</html>

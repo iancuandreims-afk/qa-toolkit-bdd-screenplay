@@ -1,0 +1,1 @@
+This is a sample file used to validate the file upload Screenplay interaction.

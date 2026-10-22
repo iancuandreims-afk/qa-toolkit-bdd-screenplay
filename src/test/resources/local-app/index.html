@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QA Toolkit Demo Home</title>
+    <script>
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+        }
+
+        function toggleStatus() {
+            const status = document.getElementById('status-message');
+            status.style.display = status.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <h1>QA Toolkit Demo Home</h1>
+        <p>Welcome to the Screenplay toolkit demo page.</p>
+
+        <form action="/search.html" method="get" id="search-form">
+            <label for="search-input">Search</label>
+            <input id="search-input" name="q" type="text" value="test" />
+            <button id="search-button" type="submit">Search</button>
+            <button id="clear-button" type="button" onclick="clearSearch()">Clear</button>
+            <button id="toggle-button" type="button" onclick="toggleStatus()">Toggle Status</button>
+            <button id="disabled-button" type="button" disabled>Disabled</button>
+            <input id="hidden-field" type="hidden" value="hidden-value" />
+        </form>
+
+        <div id="status-message" style="display:none; margin-top: 12px;">Status updated</div>
+
+        <label for="after-search-input">Tab target</label>
+        <input id="after-search-input" type="text" value="tab-target" />
+    </main>
+</body>
+</html>
