@@ -1,4 +1,4 @@
-package com.qa.automation.qatoolkit.support;
+package com.qa.automation.qatoolkit.screenplay.support;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;

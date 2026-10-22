@@ -2,7 +2,7 @@ package com.qa.automation.qatoolkit.screenplay.e2e_tests;
 
 import com.qa.automation.qatoolkit.screenplay.Actor;
 import com.qa.automation.qatoolkit.screenplay.abilities.BrowseTheWeb;
-import com.qa.automation.qatoolkit.support.LocalStaticServer;
+import com.qa.automation.qatoolkit.screenplay.support.LocalStaticServer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;

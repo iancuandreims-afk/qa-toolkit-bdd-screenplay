@@ -1,4 +1,4 @@
-package com.qa.automation.qatoolkit.support;
+package com.qa.automation.qatoolkit.screenplay.support;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
